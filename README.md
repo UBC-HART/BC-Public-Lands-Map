@@ -12,4 +12,6 @@ Two utility python files are used by these three python files.  JoinUtil.py is u
 
 In the prototype RD, Metro Vancouver Regional District, a DEM for most of the RD was created after the BCA data was joined. However, this soon proved infeasible for the whole province.  In order to reduce the time and space needed to create a slope raster for each RD, the final public land layer for each RD is buffered by 1000m and used to select DEM tiles that are then mosaiced together, projected into BC Albers coordinate reference system, and then used to derived a degree slope layer that covers only as much of the public land as possible.  This is a bit out of sequence so an UpdateMean.py file is used to revise the slope mean.
 
+Once the Regional District public land layers are appended together in AppendRD.py, the resulting "BC Public Lands" layer is further processed to add the fields used for parcel scoring and the map's public-facing attributes. These field-processing scripts, along with a full step index, are in the field-processing folder.
+
 Ian Parfitt  27 Aug 2026
