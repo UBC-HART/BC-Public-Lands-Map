@@ -14,6 +14,8 @@ In the prototype RD, Metro Vancouver Regional District, a DEM for most of the RD
 
 Several python files were developed to automate the selection and downloading of DEM raster TIF files from LidarBC and the federal HRDEM program. RDPubExtent.py creates an area of interest layer for a given RD by buffering the public land data for that RD by 1000m. LidarBC_import_tifs.py and HRDEM_import_tifs are then used to select and download the LidarBC and HRDEM files respectively.
 
+R with the terra library was used to mosaic TIF tiles together into a virtual mosaic, write it out to a TIF file, project it to BC Albers and create a degree slope.  MosiacProjectSlope_DEM20000.R can be modified for the DEM2500 tiles or the HRDEM tiles.  We used both a local instance of R and UBC Advanced Research Computing (ARC) online R instances; the main difference in the code is the directory paths where the input tiles are stored and output data will be saved. We found that some RDs included multiple UTM Zones, vertical datums, or cell sizes: these need to be processed separately. We created separate folders (i.e. .../LidarBC/<RD>/DEM20000/UTM10  and .../LidarBC/<RD>/DEM20000/UTM9), moved appropriate input tiles into them, and then processed each.
+
 All the final public land layers for all regional districts were copied to a geodatabase, and MergeALLRDs.py was then used to create the final "BC Public Lands" layer.
 
 Once the Regional District public land layers are appended together, the resulting "BC Public Lands" layer is further processed to add the fields used for parcel scoring and the map's public-facing attributes. These field-processing scripts, along with a full step index, are in the field-processing folder.
